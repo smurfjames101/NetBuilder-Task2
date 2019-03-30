@@ -1,4 +1,4 @@
-package com.netbuilder;
+package com.netbuilder.entities;
 
 import java.util.ArrayList;
 
