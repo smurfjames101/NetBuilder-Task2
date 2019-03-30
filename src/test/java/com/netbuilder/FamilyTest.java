@@ -21,6 +21,4 @@ public class FamilyTest {
 	public void setParentTest() {
 		assertTrue(family.setParent(constants.MOCK_CHILD_NAME, constants.MOCK_PARENT_NAME));
 	}
-	
-	
 }
