@@ -36,6 +36,25 @@ public class Family {
 		child.parents.add(parent);
 		return true;
 	}
+    public boolean isMale(String name) {
+        Person person =  findPerson(name);
+
+        if (person.gender.equals("male")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isFemale(String name) {
+        Person person = findPerson(name);
+
+        if (person.gender.equals("female")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 	public void getParents(String name) {
 		String[] outputArray1 = new String[2];
