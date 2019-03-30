@@ -15,11 +15,19 @@ public class Family {
     public boolean setParent(String childName, String parentName) {
         Person child = findPerson(childName);
         Person parent = findPerson(parentName);
+        //Prevented Error With Child Not Existing
         if (child == null) {
             child = new Person();
             child.name = childName;
             child.gender = "undefined";
             people.add(child);
+        }
+        //Prevented Error With Parent Not Existing
+        if (parent == null) {
+            parent = new Person();
+            parent.name = parentName;
+            parent.gender = "undefined";
+            people.add(parent);
         }
         parent.offspring.add(child);
         child.parents.add(parent);
