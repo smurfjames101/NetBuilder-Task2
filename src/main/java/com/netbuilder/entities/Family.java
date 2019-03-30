@@ -1,6 +1,7 @@
 package com.netbuilder.entities;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Family {
     ArrayList<Person> people = new ArrayList<>();
@@ -41,5 +42,19 @@ public class Family {
             outputArray1[count] = person.name;
             count++;
         }
+        //Sorting by First Letter Of Parents
+        String firstParent = outputArray1[0];
+        String secondParent = outputArray1[1];
+        int asciiNum = Character.codePointAt(firstParent, 0);
+        int asciiNum2 = Character.codePointAt(secondParent, 0);
+        if (asciiNum < asciiNum2) {
+            outputArray1[0] = firstParent;
+            outputArray1[1] = secondParent;
+        } else {
+            outputArray1[0] = secondParent;
+            outputArray1[1] = firstParent;
+        }
+        //Output For Visual Purposes
+        System.out.println(Arrays.toString(outputArray1));
      }
 }
