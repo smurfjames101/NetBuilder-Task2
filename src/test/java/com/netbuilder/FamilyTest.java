@@ -19,17 +19,22 @@ public class FamilyTest {
 	public Person mockPerson;
 	@Before
 	public void setup(){
-		family = new Family();
+		this.family = new Family();
+		this.constants = new Constants();
 	}
 
 	@Test
 	public void familyTest() {
 		assertTrue(family.setParent("Frank", "Morgan"));
 		assertTrue(family.setParent("Frank", "Dylan"));
+		assertTrue(family.female("Anna"));
 		assertTrue(family.male("Dylan"));
+		assertFalse(family.female("Dylan"));
 		assertTrue(family.setParent("Joy", "Frank")); 
 		assertTrue(family.male("Frank"));
-        assertFalse(family.male("Morgan")); 
+		assertFalse(family.female("Frank"));
+        assertFalse(family.male("Morgan"));
+        assertTrue(family.female("Morgan"));
 		assertTrue(family.setParent("July", "Morgan"));
 		assertEquals("[Frank, July]",family.getChildren("Morgan"));
 		assertTrue(family.setParent("Jennifer", "Morgan"));		
@@ -37,5 +42,11 @@ public class FamilyTest {
         assertEquals("[Frank]",family.getChildren("Dylan"));
         assertEquals("[Dylan, Morgan]",family.getParents("Frank"));
 		assertFalse(family.setParent("Frank", "Frank"));
+		
+		assertTrue(family.isFemale("Morgan"));
+		assertFalse(family.isFemale("Dylan"));
+		
+		assertTrue(family.isMale("Dylan"));
+		assertFalse(family.isMale("Morgan"));
 	}
 }
