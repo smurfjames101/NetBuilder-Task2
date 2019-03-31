@@ -54,18 +54,18 @@ Although the task relates to genealogy, the rules of this task are not claimed t
 12.	For the reasons in the preceding two bullet points it should not matter whether you actually store that name in these cases in your data structure, or not. In the latter case you would only store it at the next occasion when that name is mentioned in a call of one of the three other methods, that actually add information. The described interface has no way to query the difference between these two possible implementations, so you can choose freely.
 
 They were adhered to or acknowledged in the following ways:
-Rule 1: As there were no specifications to handle different naming conventions, this was overlooked.
-Rule 2: Having no two people in the same family names "Jim", or some such like, meant name could be unique.
-Rule 3: No gender reassignments after initial assignment.
-Rule 4: Gender was based on relationships to those who had set gender. ("spouses" had opposite genders)
-Rule 5: The "Parents" could only be a certain length and as such would not allow any more parents to a child
-Rule 6: The relationships went up and down only. No grandchildren associations made.
-Rule 7: No rules preventing incest.
-Rule 8: Prevented by stopping parental assignment with same name.
-Rule 9: No age counter or restrictions used.
-Rule 10: The **`isMale/Female()`** functions only return true if the values are an exact match to their genders.
-Rule 11: An empty list is returned if there are not relations.
-Rule 12: Information stored on class scoped ArrayList.
+- Rule 1: As there were no specifications to handle different naming conventions, this was overlooked.
+- Rule 2: Having no two people in the same family names "Jim", or some such like, meant name could be unique.
+- Rule 3: No gender reassignments after initial assignment.
+- Rule 4: Gender was based on relationships to those who had set gender. ("spouses" had opposite genders)
+- Rule 5: The "Parents" could only be a certain length and as such would not allow any more parents to a child
+- Rule 6: The relationships went up and down only. No grandchildren associations made.
+- Rule 7: No rules preventing incest.
+- Rule 8: Prevented by stopping parental assignment with same name.
+- Rule 9: No age counter or restrictions used.
+- Rule 10: The **`isMale/Female()`** functions only return true if the values are an exact match to their genders.
+- Rule 11: An empty list is returned if there are not relations.
+- Rule 12: Information stored on class scoped ArrayList.
 
 
 ### Testing
