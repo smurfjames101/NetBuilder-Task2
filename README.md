@@ -71,6 +71,6 @@ Rule 12: Information stored on class scoped ArrayList.
 ### Testing
 A majority of the testing was possible due to the example output code given on the brief. However, as is best practice, to achieve 70% coverage on code, tests were added. Such as a test for the **`female()`** function and other gender specific calls.
 
-![Test Coverage](Test Coverage.png)
+![Test Coverage](Test&#32;Coverage.png)
 
 
