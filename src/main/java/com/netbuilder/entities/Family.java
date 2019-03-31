@@ -16,6 +16,10 @@ public class Family {
 	}
 
 	public boolean setParent(String childName, String parentName) {
+		// Prevent Grandfather Paradox...
+		if (childName.equals(parentName)) {
+			return false;
+		}
 		Person child = findPerson(childName);
 		Person parent = findPerson(parentName);
 		// Prevented Error With Child Not Existing
@@ -34,6 +38,23 @@ public class Family {
 		}
 		parent.offspring.add(child);
 		child.parents.add(parent);
+		ArrayList<Person> result = new ArrayList<>();
+		for (Person person : findPerson(childName).parents) {
+			result.add(person);
+		}
+		for (int count = 0; count < result.size(); count++) {
+			if (result.size() > 1) {
+				if (result.get(count).getGender().equals("undefined")
+						&& result.get(count + 1).getGender().equals("undefined")) {
+					break;
+				} else if (result.get(count).getGender().equals("male")) {
+					result.get(count + 1).setGender("female");
+				} else if (result.get(count).getGender().equals("female")) {
+					result.get(count + 1).setGender("male");
+				}
+			}
+		}
+
 		return true;
 	}
 
@@ -65,10 +86,28 @@ public class Family {
 			person.setGender("male");
 			people.add(person);
 			return true;
+		} else if (person.getGender().contentEquals("undefined")) { // If name has no set gender
+
+			if (person.offspring.size() > 0)// find offspring, if they have them
+			{
+				for (Person parent : person.offspring.get(0).parents) // find them and check
+				{
+					if (parent.getGender().equals("male") && !parent.getName().equals(name))
+						// if they are male and not the parent you are wanting to check
+					{
+						person.setGender("female");// if the other parent is male, this name must be female
+						return false;
+					}
+				}
+			}
+
+			person.setGender("male");
+			return true;
+
 		} else if (!person.getGender().equals("male")) {
 			return false;
 		}
-		return false;
+		return true;
 	}
 
 	public boolean female(String name) {
@@ -80,20 +119,40 @@ public class Family {
 			person.setGender("female");
 			people.add(person);
 			return true;
-		} else if (!person.getGender().equals("female")) {
+		}
+		else if (person.getGender().contentEquals("undefined")) { // If name has no set gender
+
+			if (person.offspring.size() > 0)// find offspring, if they have them
+			{
+				for (Person parent : person.offspring.get(0).parents) // find them and check
+				{
+					if (parent.getGender().equals("female") && !parent.getName().equals(name))
+						// if they are female and not the parent you are wanting to check
+					{
+						person.setGender("male");// if the other parent is female, this name must be male
+						return false;
+					}
+				}
+			}
+
+			person.setGender("female");
+			return true;
+		}
+		else if (!person.getGender().equals("female")) { //All else Fails, make them female
 
 			return false;
 		}
-		return false;
+		return true;
 	}
 
 	public String getParents(String name) {
 		String[] outputArray1 = new String[2];
-		int count = 0;
-
+		ArrayList<Person> result = new ArrayList<>();
 		for (Person person : findPerson(name).parents) {
-			outputArray1[count] = person.getName();
-			count++;
+			result.add(person);
+		}
+		for (int count = 0; count < findPerson(name).parents.size(); count++) {
+			outputArray1[count] = result.get(count).getName();
 		}
 		// Sorting by First Letter Of Parents
 		String firstParent = outputArray1[0];
@@ -107,7 +166,7 @@ public class Family {
 			outputArray1[0] = secondParent;
 			outputArray1[1] = firstParent;
 		}
-		// Output For Visual Purposes
+
 		return Arrays.toString(outputArray1);
 	}
 
