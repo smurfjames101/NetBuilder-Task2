@@ -38,23 +38,6 @@ public class Family {
 		}
 		parent.offspring.add(child);
 		child.parents.add(parent);
-		ArrayList<Person> result = new ArrayList<>();
-		for (Person person : findPerson(childName).parents) {
-			result.add(person);
-		}
-		for (int count = 0; count < result.size(); count++) {
-			if (result.size() > 1) {
-				if (result.get(count).getGender().equals("undefined")
-						&& result.get(count + 1).getGender().equals("undefined")) {
-					break;
-				} else if (result.get(count).getGender().equals("male")) {
-					result.get(count + 1).setGender("female");
-				} else if (result.get(count).getGender().equals("female")) {
-					result.get(count + 1).setGender("male");
-				}
-			}
-		}
-
 		return true;
 	}
 
