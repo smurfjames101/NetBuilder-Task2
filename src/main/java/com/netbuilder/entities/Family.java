@@ -8,7 +8,7 @@ public class Family {
 
 	public Person findPerson(String name) {
 		for (Person person : people) {
-			if (person.name.equals(name)) {
+			if (person.getName().equals(name)) {
 				return person;
 			}
 		}
@@ -21,47 +21,78 @@ public class Family {
 		// Prevented Error With Child Not Existing
 		if (child == null) {
 			child = new Person();
-			child.name = childName;
-			child.gender = "undefined";
+			child.setName(childName);
+			child.setGender("undefined");
 			people.add(child);
 		}
 		// Prevented Error With Parent Not Existing
 		if (parent == null) {
 			parent = new Person();
-			parent.name = parentName;
-			parent.gender = "undefined";
+			parent.setName(parentName);
+			parent.setGender("undefined");
 			people.add(parent);
 		}
 		parent.offspring.add(child);
 		child.parents.add(parent);
 		return true;
 	}
-    public boolean isMale(String name) {
-        Person person =  findPerson(name);
 
-        if (person.gender.equals("male")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+	public boolean isMale(String name) {
+		Person person = findPerson(name);
 
-    public boolean isFemale(String name) {
-        Person person = findPerson(name);
+		if (person.getGender().equals("male")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-        if (person.gender.equals("female")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+	public boolean isFemale(String name) {
+		Person person = findPerson(name);
 
-	public void getParents(String name) {
+		if (person.getGender().equals("female")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean male(String name) {
+		Person person = findPerson(name);
+		if (person == null) {
+			person = new Person();
+			person.setName(name);
+			person.setGender("male");
+			people.add(person);
+			return true;
+		} else if (!person.getGender().equals("male")) {
+			return false;
+		}
+		return false;
+	}
+
+	public boolean female(String name) {
+		Person person = findPerson(name);
+
+		if (person == null) {
+			person = new Person();
+			person.setName(name);
+			person.setGender("female");
+			people.add(person);
+			return true;
+		} else if (!person.getGender().equals("female")) {
+
+			return false;
+		}
+		return false;
+	}
+
+	public String getParents(String name) {
 		String[] outputArray1 = new String[2];
 		int count = 0;
 
 		for (Person person : findPerson(name).parents) {
-			outputArray1[count] = person.name;
+			outputArray1[count] = person.getName();
 			count++;
 		}
 		// Sorting by First Letter Of Parents
@@ -77,20 +108,20 @@ public class Family {
 			outputArray1[1] = firstParent;
 		}
 		// Output For Visual Purposes
-		System.out.println(Arrays.toString(outputArray1));
+		return Arrays.toString(outputArray1);
 	}
 
-	public void getChildren(String name) {
-		//Dynamic Array Allocation
+	public String getChildren(String name) {
+		// Dynamic Array Allocation
 		int arraySize = findPerson(name).offspring.size();
 
 		String[] outputArray2 = new String[arraySize];
 		int count = 0;
 		for (Person person : findPerson(name).offspring) {
-			outputArray2[count] = person.name;
+			outputArray2[count] = person.getName();
 			count++;
 		}
 		// Output For Visual Purposes
-		System.out.println(Arrays.toString(outputArray2));
+		return Arrays.toString(outputArray2);
 	}
 }
